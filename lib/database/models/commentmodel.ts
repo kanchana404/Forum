@@ -24,18 +24,29 @@ export type IOrderItem = {
   buyer: string
 }
 
-const CommentSchema = new Schema({
+const OrderSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
   },
-
+  stripeId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  totalAmount: {
+    type: String,
+  },
+  event: {
+    type: Schema.Types.ObjectId,
+    ref: 'Event',
+  },
   buyer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
 })
 
-const Order = models.Order || model('Order', CommentSchema)
+const Order = models.Comment || model('Comment', OrderSchema)
 
 export default Order
