@@ -4,7 +4,6 @@ const ThreadSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   user: { type: String, required: true },  // Store Clerk User ID as string
-  clerkUserId: { type: String, required: true }, // This is redundant now, you may remove it
   postedAt: { type: Date, default: Date.now },
   upvotes: { type: Number, default: 0 },
   downvotes: { type: Number, default: 0 },

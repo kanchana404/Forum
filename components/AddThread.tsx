@@ -21,7 +21,7 @@ export default function CreateThread() {
       const thread = {
         title,
         description,
-        user: user.id, // Include the user ID here
+        user: user.id, // Include the user ID here as a string
       };
       await createThread(thread);
       alert('Thread created successfully');

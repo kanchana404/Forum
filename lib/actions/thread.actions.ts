@@ -3,13 +3,12 @@
 import { connectToDatabase } from '@/lib/database';
 import Thread from '@/lib/database/models/thread.model';
 import Comment from '@/lib/database/models/comment.model';
-import { ObjectId } from 'mongodb';
 
-// Fetch all threads with user and comments
+// Fetch all threads with comments
 export async function fetchThreads() {
   try {
     await connectToDatabase();
-    const threads = await Thread.find().populate('user').populate('comments');
+    const threads = await Thread.find().populate('comments'); // Only populate comments
     return JSON.parse(JSON.stringify(threads));
   } catch (error) {
     console.error('Error fetching threads:', error);
@@ -25,7 +24,7 @@ export async function createThread(threadData: { title: string, description: str
     const newThread = await Thread.create({
       title: threadData.title,
       description: threadData.description,
-      user: threadData.user, // Store user ID as string
+      user: threadData.user, // Ensure this is stored as a string
     });
 
     return JSON.parse(JSON.stringify(newThread));

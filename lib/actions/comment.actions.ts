@@ -1,9 +1,9 @@
 'use server';
 
 import { connectToDatabase } from '@/lib/database';
-import mongoose from 'mongoose'; // Import mongoose
 import Comment from '@/lib/database/models/comment.model';
 import Thread from '@/lib/database/models/thread.model';
+import mongoose from 'mongoose'; // Import mongoose
 
 // Add a comment to a thread
 export async function addComment({ text, threadId }: { text: string, threadId: string }) {
