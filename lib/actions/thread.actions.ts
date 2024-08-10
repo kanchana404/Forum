@@ -25,8 +25,7 @@ export async function createThread(threadData: { title: string, description: str
     const newThread = await Thread.create({
       title: threadData.title,
       description: threadData.description,
-      user: new ObjectId(threadData.user),
-      clerkUserId: threadData.user,
+      user: threadData.user, // Store user ID as string
     });
 
     return JSON.parse(JSON.stringify(newThread));
