@@ -3,10 +3,12 @@ import { Schema, model, models } from "mongoose";
 const ThreadSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  user: { type: String, required: true },  // Store as string instead of ObjectId
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  clerkUserId: { type: String, required: true },
   postedAt: { type: Date, default: Date.now },
   upvotes: { type: Number, default: 0 },
   downvotes: { type: Number, default: 0 },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }] // Add comments as an array of ObjectIds
 });
 
 const Thread = models.Thread || model('Thread', ThreadSchema);
