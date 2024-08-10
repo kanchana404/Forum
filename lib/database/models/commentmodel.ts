@@ -24,7 +24,7 @@ export type IOrderItem = {
   buyer: string
 }
 
-const OrderSchema = new Schema({
+const CommentSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
@@ -36,6 +36,6 @@ const OrderSchema = new Schema({
   },
 })
 
-const Order = models.Order || model('Order', OrderSchema)
+const Order = models.Order || model('Order', CommentSchema)
 
 export default Order
