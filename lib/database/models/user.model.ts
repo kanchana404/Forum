@@ -1,4 +1,5 @@
-import { Schema, model, models } from "mongoose";
+// file: lib/database/models/user.model.ts
+import { Schema, model, models } from 'mongoose';
 
 const UserSchema = new Schema({
   clerkId: { type: String, required: true, unique: true },
