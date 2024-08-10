@@ -33,9 +33,13 @@ export default function VoteButtons({ threadId, upvotes, downvotes }: { threadId
   };
 
   return (
-    <div className="vote-buttons">
-      <button onClick={handleUpvote} disabled={hasVoted}>Upvote ({currentUpvotes})</button>
-      <button onClick={handleDownvote} disabled={hasVoted}>Downvote ({currentDownvotes})</button>
+    <div className="flex items-center gap-4 mt-2">
+      <button onClick={handleUpvote} disabled={hasVoted} className="text-green-500">
+        <i className="fa fa-thumbs-up"></i> {currentUpvotes}
+      </button>
+      <button onClick={handleDownvote} disabled={hasVoted} className="text-red-500">
+        <i className="fa fa-thumbs-down"></i> {currentDownvotes}
+      </button>
     </div>
   );
 }

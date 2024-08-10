@@ -1,5 +1,3 @@
-// ThreadList.tsx
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -23,7 +21,7 @@ export default function ThreadList() {
   }, []);
 
   return (
-    <div>
+    <div className="bg-gray-50 p-4 rounded-xl shadow-md">
       {threads.map((thread: any) => (
         <ThreadItem key={thread._id} thread={thread} />
       ))}

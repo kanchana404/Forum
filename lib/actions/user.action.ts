@@ -47,3 +47,10 @@ export async function deleteUser(clerkId: string) {
     throw new Error('User deletion failed');
   }
 }
+
+
+export async function getUser(clerkId: string) {
+  await connectToDatabase();
+  const user = await User.findOne({ clerkId });
+  return user ? user.toObject() : null;
+}

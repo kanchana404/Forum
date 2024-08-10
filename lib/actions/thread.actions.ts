@@ -32,10 +32,7 @@ export async function fetchThreads() {
   try {
     await connectToDatabase();
     const threads = await Thread.find()
-      .populate({
-        path: 'user',
-        select: 'firstName lastName',  // Only select the firstName and lastName fields
-      })
+      .populate('user', 'firstName lastName') // Populate the user field with firstName and lastName
       .populate({
         path: 'comments',
         populate: {
