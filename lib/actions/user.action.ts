@@ -50,7 +50,15 @@ export async function deleteUser(clerkId: string) {
 
 
 export async function getUser(clerkId: string) {
-  await connectToDatabase();
-  const user = await User.findOne({ clerkId });
-  return user ? user.toObject() : null;
+  try {
+    await connectToDatabase();
+    const user = await User.findOne({ clerkId });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    return user.toObject();
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw new Error('Failed to fetch user');
+  }
 }

@@ -31,16 +31,23 @@ export default function ThreadItem({ thread }: { thread: any }) {
   return (
     <div className="bg-white rounded-xl shadow-md p-4 mb-4">
       <div className="flex items-start gap-4">
-        <Image src={thread.user.profileImageUrl} alt="User Avatar" width={50} height={50} className="rounded-full" />
+        {/* Use the userProfilePic field to display the user's profile picture */}
+        <Image src={thread.userProfilePic} alt="User Avatar" width={50} height={50} className="rounded-full" />
         <div className="flex-grow">
           <h2 className="text-lg font-semibold">{thread.title}</h2>
           <p className="text-gray-600">{thread.description}</p>
-          <p className="text-sm text-gray-500">Posted by: {thread.user.firstName} {thread.user.lastName}</p>
+          <p className="text-sm text-gray-500">Posted by: {thread.userFirstName} {thread.user.lastName}</p>
         </div>
         <div className="text-gray-500 text-sm">{/* Add Time Since Posted */}</div>
       </div>
       
-      <VoteButtons threadId={thread._id} upvotes={thread.upvotes} downvotes={thread.downvotes} />
+      <VoteButtons
+        threadId={thread._id}
+        upvotes={thread.upvotes}
+        downvotes={thread.downvotes}
+        // Safely access voters array, defaulting to an empty array if undefined
+        initialUserVote={thread.voters?.find((vote: { userId: string }) => vote.userId === user?.id)?.type || null}
+      />
       
       <CommentList comments={comments} showAll={showAllComments} />
       {comments.length > 2 && !showAllComments && (

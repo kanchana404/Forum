@@ -1,13 +1,18 @@
-import AddThread from '@/components/AddThread'
+
 import Navbar from '@/components/Navbar'
 import ThreadList from '@/components/ThreadList'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
       <Navbar />
-      <AddThread />
+     <Button asChild>
+      <Link href={'/add-thread'}>Add Thread</Link>
+     </Button>
+     
       <ThreadList />
     </div>
   )
