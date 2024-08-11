@@ -1,14 +1,11 @@
-// comment.model.ts
-import mongoose, { Schema, model, models } from 'mongoose';
+import mongoose from 'mongoose';
 
-const CommentSchema = new Schema({
-  thread: { type: Schema.Types.ObjectId, ref: 'Thread', required: true },
-  user: { type: Schema.Types.ObjectId, ref: 'User', required: true }, // Reference User model
-  text: { type: String, required: true },
-  postedAt: { type: Date, default: Date.now },
+const commentSchema = new mongoose.Schema({
+  content: { type: String, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  thread: { type: mongoose.Schema.Types.ObjectId, ref: 'Thread', required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
-// Use mongoose.connection.model to avoid circular dependency issues
-const Comment = models.Comment || mongoose.connection.model('Comment', CommentSchema);
-
+const Comment = mongoose.models.Comment || mongoose.model('Comment', commentSchema);
 export default Comment;

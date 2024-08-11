@@ -42,7 +42,7 @@ export async function fetchThreads() {
     await connectToDatabase();
 
     const threads = await Thread.find({})
-      .populate('user', 'firstName lastName photo')
+      .populate('user', 'firstName lastName photo')  // Ensure user details are populated
       .populate({
         path: 'comments',
         populate: {
